@@ -118,18 +118,24 @@ class Camera:
             raise RuntimeError(f"cannot open camera {index}")
         self.refresh_hz = refresh_hz
         self.frames_to_integrate = frames_to_integrate
-        # lock auto-exposure / auto-white-balance so readings are comparable
-        self.cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.25)   # 0.25 = manual on many UVC cams
+        # Confirmed on a Logitech C920 (V4L2/uvcvideo, opencv 5.0):
+        #   AUTO_EXPOSURE=1 -> manual; EXPOSURE is in raw V4L2 units of 100us
+        #   (e.g. 320 = 32 ms); GAIN 0 + manual WB keep readings comparable.
+        # A 32 ms exposure captures the full scan solidly (no banding); the
+        # auto default (~short) freezes one scan slice. See GH #11.
+        self.cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 1)      # 1 = manual (V4L2 uvc)
         self.cap.set(cv2.CAP_PROP_AUTO_WB, 0)
+        self.cap.set(cv2.CAP_PROP_GAIN, 0)
+        self.cap.set(cv2.CAP_PROP_WB_TEMPERATURE, 4500)
 
     def min_config_exposure_s(self):
         return self.frames_to_integrate / self.refresh_hz
 
     def set_exposure(self, seconds):
-        # UVC exposure units vary by driver; many use log2(seconds). Try both and
-        # let the caller verify against a test shot. This is the #1 thing to tune.
-        self.cap.set(cv2.CAP_PROP_EXPOSURE, seconds)          # some drivers: raw seconds/ms
-        # fallback attempt for log2-microsecond drivers is left to a calibration step
+        # C920/V4L2: EXPOSURE units are 100 microseconds. 1/30 s -> ~333.
+        units = max(3, round(seconds * 10000))
+        self.cap.set(cv2.CAP_PROP_EXPOSURE, units)
+        return units
 
     def grab(self, n=1, drop=3):
         for _ in range(drop):            # flush stale buffered frames
