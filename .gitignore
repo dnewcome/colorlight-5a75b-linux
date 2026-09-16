@@ -1,0 +1,28 @@
+# Large capture data (26 GB of pcaps — not for the repo)
+captures/
+*.pcap
+tools/replies.out
+
+# Vendor LEDVISION software (copyrighted — do not redistribute)
+ledvision/*.exe
+ledvision/*.zip
+ledvision/shim/*.dll
+ledvision/shim/*.exe
+ledvision/shim/*.o
+
+# Downloaded vendor config archives (copyright / password-gated)
+ledvision/rcvbp/downloaded/
+
+# Python cruft
+__pycache__/
+*.pyc
+
+# Local env
+.env
+.env.*
+
+# Wine / shim debug logs (huge, machine-specific)
+*.log
+ledvision/run-root.log
+ledvision/wpcap-shim.log
+tools/cfgcapture.txt
