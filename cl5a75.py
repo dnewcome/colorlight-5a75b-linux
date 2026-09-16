@@ -55,8 +55,15 @@ def pkt_discover(idx=0):
 
 
 class Sender:
-    def __init__(self, iface, width, height, brightness=255, dup=False):
+    def __init__(self, iface, width, height, brightness=255, dup=False,
+                 canvas_w=0, canvas_h=0, px=0, py=0):
         self.iface, self.w, self.h, self.b, self.dup = iface, width, height, brightness, dup
+        # The card has a FIXED internal framebuffer (e.g. 256x512); a small panel
+        # maps to a sub-rectangle of it, and the card wants FULL-width rows.
+        # LEDVISION always sends canvas_w=256, offset 0. Set canvas_w>0 to match.
+        self.cw = canvas_w or width
+        self.ch = canvas_h or height
+        self.px, self.py = px, py
         self.sock = socket.socket(socket.AF_PACKET, socket.SOCK_RAW)
         self.sock.bind((iface, 0))
 
@@ -73,16 +80,24 @@ class Sender:
                 time.sleep(gap)
 
     def show(self, fb):
-        """fb: bytes of w*h*3 RGB, row-major."""
+        """fb: bytes of w*h*3 RGB, row-major. Composited into the card's cw x ch
+        internal canvas at (px, py); full canvas-width rows are sent (what the card
+        actually wants). For cw==w and px==py==0 this is the original behaviour."""
         assert len(fb) == self.w * self.h * 3, (len(fb), self.w, self.h)
         self.send(pkt_brightness(self.b))
-        stride = self.w * 3
-        for y in range(self.h):
-            row = fb[y * stride:(y + 1) * stride]
+        cstride = self.cw * 3
+        pstride = self.w * 3
+        for cy in range(self.ch):
+            # build one full canvas row (default black), overlay the panel if in range
+            crow = bytearray(cstride)
+            fy = cy - self.py
+            if 0 <= fy < self.h:
+                src = fb[fy * pstride:(fy + 1) * pstride]
+                crow[self.px * 3:self.px * 3 + pstride] = src
             off = 0
-            while off < self.w:
-                n = min(MAX_PIX_PER_PKT, self.w - off)
-                self.send(pkt_row(y, off, row[off * 3:(off + n) * 3]))
+            while off < self.cw:
+                n = min(MAX_PIX_PER_PKT, self.cw - off)
+                self.send(pkt_row(cy, off, bytes(crow[off * 3:(off + n) * 3])))
                 off += n
         self.send(pkt_sync(self.b))
 
@@ -187,6 +202,10 @@ def main():
     ap.add_argument("-H", "--height", type=int, default=32)
     ap.add_argument("-b", "--brightness", type=int, default=255)
     ap.add_argument("--dup", action="store_true", help="send every packet twice (LEDVision does this for fw>=13)")
+    ap.add_argument("--cw", type=int, default=0, help="card internal canvas width (LEDVISION uses 256); 0 = same as -W")
+    ap.add_argument("--ch", type=int, default=0, help="card internal canvas height (rows to send); 0 = same as -H")
+    ap.add_argument("--px", type=int, default=0, help="panel X offset within the card canvas")
+    ap.add_argument("--py", type=int, default=0, help="panel Y offset within the card canvas")
     ap.add_argument("--fps", type=float, default=30)
     ap.add_argument("--hold", type=float, default=0, help="seconds to keep re-sending a static frame (0 = send once)")
     ap.add_argument("--config", help="apply a captured receiver-card config blob before doing anything else")
@@ -203,7 +222,8 @@ def main():
     s = sub.add_parser("pixel", help="light a single pixel"); s.add_argument("x", type=int); s.add_argument("y", type=int)
     a = ap.parse_args()
 
-    snd = Sender(a.iface, a.width, a.height, a.brightness, a.dup)
+    snd = Sender(a.iface, a.width, a.height, a.brightness, a.dup,
+                 canvas_w=a.cw, canvas_h=a.ch, px=a.px, py=a.py)
     if a.config:
         frames = load_config_blob(a.config)
         print(f"applying {len(frames)} config frames from {a.config}")
