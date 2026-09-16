@@ -1,0 +1,676 @@
+[
+  {
+    "file": "cfg_00_d92f8c8365c2.bin",
+    "n_packets": 53,
+    "bytes": 37917,
+    "geometry": {
+      "b7": 32,
+      "b10": 32,
+      "b15": 32,
+      "width": 64,
+      "b19": 198,
+      "b23": 0
+    },
+    "driver_tables": [
+      "0x76",
+      "0x7b",
+      "0x7f",
+      "0x83"
+    ],
+    "has_scan_table": true,
+    "types": [
+      "0x03",
+      "0x05",
+      "0x10",
+      "0x17",
+      "0x18",
+      "0x1b",
+      "0x1f",
+      "0x26",
+      "0x2b",
+      "0x32",
+      "0x37",
+      "0x41",
+      "0x76",
+      "0x7b",
+      "0x7f",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_01_27707866cbe0.bin",
+    "n_packets": 53,
+    "bytes": 37917,
+    "geometry": {
+      "b7": 32,
+      "b10": 32,
+      "b15": 32,
+      "width": 64,
+      "b19": 198,
+      "b23": 0
+    },
+    "driver_tables": [
+      "0x76",
+      "0x7b",
+      "0x7f",
+      "0x83"
+    ],
+    "has_scan_table": true,
+    "types": [
+      "0x03",
+      "0x05",
+      "0x10",
+      "0x17",
+      "0x18",
+      "0x1b",
+      "0x1f",
+      "0x26",
+      "0x2b",
+      "0x32",
+      "0x37",
+      "0x41",
+      "0x76",
+      "0x7b",
+      "0x7f",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_02_c4488fc02803.bin",
+    "n_packets": 53,
+    "bytes": 37917,
+    "geometry": {
+      "b7": 32,
+      "b10": 32,
+      "b15": 32,
+      "width": 64,
+      "b19": 198,
+      "b23": 0
+    },
+    "driver_tables": [
+      "0x76",
+      "0x7b",
+      "0x7f",
+      "0x83"
+    ],
+    "has_scan_table": true,
+    "types": [
+      "0x03",
+      "0x05",
+      "0x10",
+      "0x17",
+      "0x18",
+      "0x1b",
+      "0x1f",
+      "0x26",
+      "0x2b",
+      "0x32",
+      "0x37",
+      "0x41",
+      "0x76",
+      "0x7b",
+      "0x7f",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_03_39ac6c709bce.bin",
+    "n_packets": 52,
+    "bytes": 37639,
+    "geometry": {
+      "b7": 32,
+      "b10": 32,
+      "b15": 32,
+      "width": 64,
+      "b19": 198,
+      "b23": 0
+    },
+    "driver_tables": [
+      "0x76",
+      "0x7b",
+      "0x7f",
+      "0x83"
+    ],
+    "has_scan_table": true,
+    "types": [
+      "0x03",
+      "0x05",
+      "0x10",
+      "0x17",
+      "0x18",
+      "0x1b",
+      "0x1f",
+      "0x2b",
+      "0x32",
+      "0x37",
+      "0x41",
+      "0x76",
+      "0x7b",
+      "0x7f",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_04_776eb70d5471.bin",
+    "n_packets": 43,
+    "bytes": 25843,
+    "geometry": {
+      "b7": 32,
+      "b10": 32,
+      "b15": 32,
+      "width": 64,
+      "b19": 198,
+      "b23": 0
+    },
+    "driver_tables": [
+      "0x76",
+      "0x83"
+    ],
+    "has_scan_table": true,
+    "types": [
+      "0x03",
+      "0x05",
+      "0x10",
+      "0x17",
+      "0x18",
+      "0x1b",
+      "0x1f",
+      "0x26",
+      "0x2b",
+      "0x32",
+      "0x37",
+      "0x41",
+      "0x76",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_05_ff70b91094e1.bin",
+    "n_packets": 43,
+    "bytes": 25843,
+    "geometry": {
+      "b7": 32,
+      "b10": 32,
+      "b15": 32,
+      "width": 64,
+      "b19": 198,
+      "b23": 0
+    },
+    "driver_tables": [
+      "0x76",
+      "0x83"
+    ],
+    "has_scan_table": true,
+    "types": [
+      "0x03",
+      "0x05",
+      "0x10",
+      "0x17",
+      "0x18",
+      "0x1b",
+      "0x1f",
+      "0x26",
+      "0x2b",
+      "0x32",
+      "0x37",
+      "0x41",
+      "0x76",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_06_006719e203a3.bin",
+    "n_packets": 41,
+    "bytes": 25425,
+    "geometry": {
+      "b7": 32,
+      "b10": 32,
+      "b15": 32,
+      "width": 64,
+      "b19": 198,
+      "b23": 0
+    },
+    "driver_tables": [
+      "0x76",
+      "0x83"
+    ],
+    "has_scan_table": true,
+    "types": [
+      "0x03",
+      "0x05",
+      "0x10",
+      "0x17",
+      "0x18",
+      "0x1b",
+      "0x1f",
+      "0x26",
+      "0x2b",
+      "0x32",
+      "0x37",
+      "0x41",
+      "0x76",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_07_5f8dbb4351c7.bin",
+    "n_packets": 40,
+    "bytes": 25147,
+    "geometry": {
+      "b7": 32,
+      "b10": 32,
+      "b15": 32,
+      "width": 64,
+      "b19": 198,
+      "b23": 0
+    },
+    "driver_tables": [
+      "0x76",
+      "0x83"
+    ],
+    "has_scan_table": true,
+    "types": [
+      "0x03",
+      "0x05",
+      "0x10",
+      "0x17",
+      "0x18",
+      "0x1b",
+      "0x1f",
+      "0x2b",
+      "0x32",
+      "0x37",
+      "0x41",
+      "0x76",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_08_c8213226c19b.bin",
+    "n_packets": 23,
+    "bytes": 21243,
+    "geometry": {},
+    "driver_tables": [
+      "0x7b",
+      "0x7f",
+      "0x83"
+    ],
+    "has_scan_table": false,
+    "types": [
+      "0x03",
+      "0x1f",
+      "0x32",
+      "0x37",
+      "0x41",
+      "0x7b",
+      "0x7f",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_09_be2e59c7f0df.bin",
+    "n_packets": 23,
+    "bytes": 16286,
+    "geometry": {
+      "b7": 32,
+      "b10": 32,
+      "b15": 32,
+      "width": 64,
+      "b19": 198,
+      "b23": 0
+    },
+    "driver_tables": [
+      "0x76",
+      "0x83"
+    ],
+    "has_scan_table": true,
+    "types": [
+      "0x03",
+      "0x05",
+      "0x10",
+      "0x17",
+      "0x18",
+      "0x1b",
+      "0x1f",
+      "0x2b",
+      "0x32",
+      "0x37",
+      "0x41",
+      "0x76",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_10_38af7be0fde4.bin",
+    "n_packets": 21,
+    "bytes": 14714,
+    "geometry": {
+      "b7": 1,
+      "b10": 1,
+      "b15": 32,
+      "width": 64,
+      "b19": 198,
+      "b23": 1
+    },
+    "driver_tables": [
+      "0x76",
+      "0x83"
+    ],
+    "has_scan_table": true,
+    "types": [
+      "0x03",
+      "0x05",
+      "0x10",
+      "0x17",
+      "0x18",
+      "0x1b",
+      "0x1f",
+      "0x2b",
+      "0x32",
+      "0x37",
+      "0x41",
+      "0x76",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_11_a3818ab77c04.bin",
+    "n_packets": 18,
+    "bytes": 13084,
+    "geometry": {},
+    "driver_tables": [
+      "0x76",
+      "0x7b",
+      "0x7f",
+      "0x83"
+    ],
+    "has_scan_table": true,
+    "types": [
+      "0x17",
+      "0x18",
+      "0x1b",
+      "0x2b",
+      "0x32",
+      "0x41",
+      "0x76",
+      "0x7b",
+      "0x7f",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_12_92d5c9b8a7ce.bin",
+    "n_packets": 16,
+    "bytes": 7421,
+    "geometry": {},
+    "driver_tables": [
+      "0x76",
+      "0x7f"
+    ],
+    "has_scan_table": true,
+    "types": [
+      "0x17",
+      "0x18",
+      "0x1b",
+      "0x2b",
+      "0x76",
+      "0x7f"
+    ]
+  },
+  {
+    "file": "cfg_13_ddfcd8d0e73a.bin",
+    "n_packets": 11,
+    "bytes": 6403,
+    "geometry": {},
+    "driver_tables": [
+      "0x83"
+    ],
+    "has_scan_table": false,
+    "types": [
+      "0x03",
+      "0x1b",
+      "0x32",
+      "0x37",
+      "0x83"
+    ]
+  },
+  {
+    "file": "cfg_14_9d6630dbc544.bin",
+    "n_packets": 11,
+    "bytes": 3234,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x11"
+    ]
+  },
+  {
+    "file": "cfg_15_f283efe4680f.bin",
+    "n_packets": 10,
+    "bytes": 8691,
+    "geometry": {
+      "b7": 1,
+      "b10": 1,
+      "b15": 32,
+      "width": 64,
+      "b19": 198,
+      "b23": 1
+    },
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x03",
+      "0x05",
+      "0x10",
+      "0x1f",
+      "0x32",
+      "0x37"
+    ]
+  },
+  {
+    "file": "cfg_16_659a1c045c33.bin",
+    "n_packets": 9,
+    "bytes": 5574,
+    "geometry": {},
+    "driver_tables": [
+      "0x7b",
+      "0x7f"
+    ],
+    "has_scan_table": false,
+    "types": [
+      "0x1b",
+      "0x7b",
+      "0x7f"
+    ]
+  },
+  {
+    "file": "cfg_17_3d10c4033b31.bin",
+    "n_packets": 7,
+    "bytes": 3492,
+    "geometry": {},
+    "driver_tables": [
+      "0x7b",
+      "0x7f"
+    ],
+    "has_scan_table": false,
+    "types": [
+      "0x1b",
+      "0x7b",
+      "0x7f"
+    ]
+  },
+  {
+    "file": "cfg_18_2b308530476b.bin",
+    "n_packets": 7,
+    "bytes": 3259,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x1b",
+      "0x32",
+      "0x37"
+    ]
+  },
+  {
+    "file": "cfg_19_c8f4d17f00f1.bin",
+    "n_packets": 6,
+    "bytes": 1668,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x06"
+    ]
+  },
+  {
+    "file": "cfg_20_8738b672ee70.bin",
+    "n_packets": 6,
+    "bytes": 1668,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x06"
+    ]
+  },
+  {
+    "file": "cfg_21_d091710a8389.bin",
+    "n_packets": 6,
+    "bytes": 2458,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x1b",
+      "0x32"
+    ]
+  },
+  {
+    "file": "cfg_22_51fc2c7aa9a2.bin",
+    "n_packets": 6,
+    "bytes": 1764,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x11"
+    ]
+  },
+  {
+    "file": "cfg_23_9fd3f0dff0db.bin",
+    "n_packets": 5,
+    "bytes": 5212,
+    "geometry": {},
+    "driver_tables": [
+      "0x7b",
+      "0x7f"
+    ],
+    "has_scan_table": false,
+    "types": [
+      "0x32",
+      "0x7b",
+      "0x7f"
+    ]
+  },
+  {
+    "file": "cfg_24_7544c4b45184.bin",
+    "n_packets": 5,
+    "bytes": 1410,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x1b"
+    ]
+  },
+  {
+    "file": "cfg_25_bd01afcb1bdf.bin",
+    "n_packets": 5,
+    "bytes": 1470,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x11"
+    ]
+  },
+  {
+    "file": "cfg_26_87430d016239.bin",
+    "n_packets": 5,
+    "bytes": 1470,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x11"
+    ]
+  },
+  {
+    "file": "cfg_27_b14cb5d0fbbe.bin",
+    "n_packets": 5,
+    "bytes": 1470,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x11"
+    ]
+  },
+  {
+    "file": "cfg_28_806a1e1fb410.bin",
+    "n_packets": 5,
+    "bytes": 1470,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x11"
+    ]
+  },
+  {
+    "file": "cfg_29_d5a707730265.bin",
+    "n_packets": 5,
+    "bytes": 1470,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x11"
+    ]
+  },
+  {
+    "file": "cfg_30_d1d85dca900b.bin",
+    "n_packets": 4,
+    "bytes": 3968,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x11"
+    ]
+  },
+  {
+    "file": "cfg_31_e2d55479e33e.bin",
+    "n_packets": 4,
+    "bytes": 3976,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x11"
+    ]
+  },
+  {
+    "file": "cfg_32_050eea4a82ff.bin",
+    "n_packets": 4,
+    "bytes": 2190,
+    "geometry": {},
+    "driver_tables": [],
+    "has_scan_table": false,
+    "types": [
+      "0x11"
+    ]
+  }
+]
