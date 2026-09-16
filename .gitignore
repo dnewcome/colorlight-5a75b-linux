@@ -26,3 +26,7 @@ __pycache__/
 ledvision/run-root.log
 ledvision/wpcap-shim.log
 tools/cfgcapture.txt
+
+# single-process probe image outputs
+probe*.png
+captures/ledvision_frame.bin
