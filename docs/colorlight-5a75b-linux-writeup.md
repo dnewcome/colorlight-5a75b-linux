@@ -300,3 +300,68 @@ Recommended order: back up flash → flash a `receiver75` prebuilt bitstream →
   `receiver75`.
 
 The hardware was never the problem. Power and a hostile vendor tool were.
+
+---
+
+## 10. Deeper session — the FM6124/SM5368 dead end (and what it taught us)
+
+A second, longer push to get **arbitrary content on the panel from Linux** (not just a
+config). It ended at a hard wall, but produced the most important findings and tools.
+
+### 10.1 The card has a fixed internal framebuffer, and pixel packets are full-width
+Mining LEDVISION's own pixel stream from a capture (`tools/mine_configs.py`,
+`tools/panelprobe.py`) showed LEDVISION always sends **256-wide rows** (`0x55`,
+`n=256`, offset 0, rows 0–255): the card has a **fixed ~256×512 internal canvas**, and a
+small panel maps to a sub-region. `cl5a75` was updated with canvas addressing
+(`--cw/--ch/--px/--py`) to match. Sync (`0x01`) and brightness (`0x0a`) packets were
+verified **byte-identical** to LEDVISION's.
+
+### 10.2 The row-decode mode was wrong the whole time
+Both FM6124 panels use **SM5368 shift-register row select** — *not* binary A–E decoding.
+(See the artnode project: `row_addr_type=5` / mrcodetastic `TYPE595`; "type 5 works,
+types 0–4 come out jumbled".) We were on **7258/138 (binary) decode all night**, which
+cannot drive a shift-register panel. LEDVISION exposes shift-register decode as a
+**"595"-class** option (`5953/5958/5368` in its bundled configs). This is real and
+necessary — but, crucially, **not sufficient** (see 10.4).
+
+### 10.3 LEDVISION's entire config library is bundled, unencrypted
+The password-walled `.rcvbp` files we hunted online are **shipped inside LEDVISION** at
+`…/ColorLight/LEDVISION/config_files/` — **1516** configs covering every chip/pitch/scan,
+including the exact `P3-32S-64X64-FM6253+7258` we were blocked on. Plus `ChipData/`
+(per-chip gamma) and `ChipSetting.dll` (the chip database with FM6126/MBI/ICN/SM/DP…).
+**Caveat:** `.rcvbp` is LEDVISION's **save-file format, not on-wire packets** — LEDVISION
+converts it to the wire burst internally, so you cannot replay a `.rcvbp` with
+`cl5a75 --config`. Using the library from Linux would require an **rcvbp→wire converter**.
+
+### 10.4 The wall: the card won't reliably display *changing* content
+The decisive, humbling result: **content does not update on the panel**, and it is
+**card/session-level, not panel- or decode-specific**. Reproduced across **two different
+panels**, **both decode modes**, every config, a **power cycle**, **killing LEDVISION**,
+and **byte-perfect replay of LEDVISION's own captured frame** — the panel stays on a
+stuck/residual frame and even LEDVISION's Screen Test won't move it. LEDVISION itself
+never cleanly drove either FM6124/SM5368 panel. There is a live "arm/enable" step the
+card needs that config + pixels don't trigger, and every capture we have started
+*mid-session* (already armed), so we can't reproduce it. **Stock firmware is a dead end
+for these panels on this card.**
+
+### 10.5 New tools from this session
+- `tools/mine_configs.py` — stream a multi-GB pcap, extract/dedupe config bursts.
+- `tools/panelprobe.py` + `Dockerfile.probe` — **single-process** raw-socket sender +
+  OpenCV camera in one container (eliminates the send/observe coordination that made
+  every hardware test unreliable). Confirmed C920 exposure: `AUTO_EXPOSURE=1`,
+  `EXPOSURE=320` (32 ms, in 100 µs units) captures a full scan without banding.
+- `tools/autotune.py` — camera-in-the-loop scaffold (homography, walk-pattern scorers).
+- `cl5a75.py` — canvas addressing (`--cw/--ch/--px/--py`).
+
+### 10.6 Verdict and the path that avoids all of it
+Getting a **config/scan** onto the card from Linux works. Getting **arbitrary content**
+to display does **not**, and it's a card-level session wall we couldn't crack without
+either a fresh power-on capture of a *working* LEDVISION session (which never existed for
+these panels) or reflashing.
+
+**The clean path is gateware** (`docs/reflash-v8.2.md`, `receiver75`): write the HUB75
+driver yourself, applying the **bench-verified artnode FM6124/SM5368 recipe** — driver
+FM6124, **`row_addr_type=5` (SM5368 shift-register)**, **RGB=BGR**, `clk_phase=false`
+(fixes the column-mirror), `latch_blanking=2`, `min_refresh=120`. That sidesteps the
+opaque card session entirely. It needs a ~$10 FT2232 JTAG adapter; it's the resumption
+point when one is available.
